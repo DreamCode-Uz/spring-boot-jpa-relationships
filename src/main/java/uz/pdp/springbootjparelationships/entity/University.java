@@ -21,4 +21,9 @@ public class University {
 
     @OneToOne(optional = false)
     private Address address;
+
+    public University(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
 }
