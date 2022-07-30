@@ -1,0 +1,22 @@
+###
+GET http://localhost:8080/api/
+
+###
+GET http://localhost:8080/api/student/university/id=1
+
+###
+POST http://localhost:8080/api/student
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "city": "Tashkent",
+  "district": "Mirobod",
+  "street": "U. Nosir",
+  "groupId": 2,
+  "subjectId": [3, 4, 5, 13, 14, 15]
+}
+
+###
+DELETE http://localhost:8080/api/student/id=1
