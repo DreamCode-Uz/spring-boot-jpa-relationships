@@ -18,4 +18,8 @@ public class Subject {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    public Subject(String name) {
+        this.name = name;
+    }
 }

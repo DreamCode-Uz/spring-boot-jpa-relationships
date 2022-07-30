@@ -22,4 +22,9 @@ public class Group {
 
     @ManyToOne
     private Faculty faculty;
+
+    public Group(String name, Faculty faculty) {
+        this.name = name;
+        this.faculty = faculty;
+    }
 }

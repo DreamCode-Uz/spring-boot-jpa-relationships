@@ -31,4 +31,12 @@ public class Student {
 
     @ManyToMany
     private List<Subject> subjects;
+
+    public Student(String firstname, String lastname, Address address, Group group, List<Subject> subjects) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.group = group;
+        this.subjects = subjects;
+    }
 }
