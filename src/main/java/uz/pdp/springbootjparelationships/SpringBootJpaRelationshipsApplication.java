@@ -36,7 +36,7 @@ public class SpringBootJpaRelationshipsApplication implements CommandLineRunner 
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         for (String name : subjects) {
             subjectService.saveSubject(new Subject(name));
         }
@@ -45,12 +45,12 @@ public class SpringBootJpaRelationshipsApplication implements CommandLineRunner 
             universityService.addUniversity(university);
         }
 
-//        for (FacultyDTO faculty : faculties()) {
-//            facultyService.addFaculty(faculty);
-//        }
+        for (FacultyDTO faculty : faculties()) {
+            facultyService.addFaculty(faculty);
+        }
 
-//        for (GroupDTO group : groups()) {
-//            groupService.save(group);
-//        }
+        for (GroupDTO group : groups()) {
+            groupService.save(group);
+        }
     }
 }
