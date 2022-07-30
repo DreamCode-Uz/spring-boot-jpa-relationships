@@ -5,10 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import uz.pdp.springbootjparelationships.entity.Address;
-import uz.pdp.springbootjparelationships.entity.Group;
-import uz.pdp.springbootjparelationships.entity.Student;
-import uz.pdp.springbootjparelationships.entity.Subject;
+import uz.pdp.springbootjparelationships.entity.*;
 import uz.pdp.springbootjparelationships.payload.StudentDTO;
 import uz.pdp.springbootjparelationships.repository.AddressRepository;
 import uz.pdp.springbootjparelationships.repository.GroupRepository;
@@ -45,6 +42,16 @@ public class StudentService {
     //    READ FOR UNIVERSITY
     public ResponseEntity<Page<Student>> getAllStudentsForUniversity(Integer universityId, Integer page) {
         return new ResponseEntity<>(studentRepository.findAllByGroup_Faculty_UniversityId(universityId, PageRequest.of(page - 1, 10)), OK);
+    }
+
+    //    READ FOR FACULTY
+    public ResponseEntity<Page<Student>> getAllStudentForFaculty(Integer universityId, Integer facultyId, Integer page) {
+        return new ResponseEntity<>(studentRepository.findAllByGroup_FacultyIdAndGroup_Faculty_UniversityId(facultyId, universityId, PageRequest.of(page - 1, 10)), OK);
+    }
+
+    //    READ FOR GROUP
+    public ResponseEntity<List<Student>> getAllStudentForGroupOwner(Integer universityId, Integer groupId) {
+        return new ResponseEntity<>(studentRepository.findAllByGroup_Faculty_UniversityIdAndGroupId(universityId, groupId), OK);
     }
 
     //    CREAT
