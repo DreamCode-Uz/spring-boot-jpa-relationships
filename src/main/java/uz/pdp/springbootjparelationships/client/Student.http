@@ -5,7 +5,7 @@ GET http://localhost:8080/api/
 GET http://localhost:8080/api/student/university/id=1
 
 ###
-POST http://localhost:8080/api/student
+POST http://localhost:8080/api/student/id=1
 Content-Type: application/json
 
 {
