@@ -42,9 +42,10 @@ public class FacultyService {
 
     public ResponseEntity<?> addFaculty(FacultyDTO dto) {
         Optional<University> optional = universityRepository.findById(dto.getUniversityId());
-        boolean facultyByName = facultyRepository.findFacultyByName(dto.getName());
+        boolean facultyByName = facultyRepository.existsByName(dto.getName());
         if (!facultyByName && optional.isPresent()) {
             facultyRepository.save(new Faculty(dto.getName(), optional.get()));
+            return new ResponseEntity<>("Faculty successfully added", CREATED);
         }
         return new ResponseEntity<>(BAD_REQUEST);
     }
@@ -57,6 +58,7 @@ public class FacultyService {
             Optional<University> ou = universityRepository.findById(dto.getUniversityId());
             ou.ifPresent(faculty::setUniversity);
             facultyRepository.save(faculty);
+            return new ResponseEntity<>("Faculty successfully edited", OK);
         }
         return new ResponseEntity<>("Faculty not found", NOT_FOUND);
     }

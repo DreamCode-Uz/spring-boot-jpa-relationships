@@ -45,12 +45,12 @@ public class SpringBootJpaRelationshipsApplication implements CommandLineRunner 
             universityService.addUniversity(university);
         }
 
-        for (FacultyDTO faculty : faculties()) {
-            facultyService.addFaculty(faculty);
-        }
+//        for (FacultyDTO faculty : faculties()) {
+//            facultyService.addFaculty(faculty);
+//        }
 
-        for (GroupDTO group : groups()) {
-            groupService.save(group);
-        }
+//        for (GroupDTO group : groups()) {
+//            groupService.save(group);
+//        }
     }
 }

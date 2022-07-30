@@ -36,7 +36,7 @@ public class StartedData {
                 new FacultyDTO("Naft va Gaz", 2),
                 new FacultyDTO("Muxandislik", 2),
                 new FacultyDTO("Issiqlik eneregetika", 2),
-                new FacultyDTO("Elektr energetikasi", 1)
+                new FacultyDTO("Elektr energetikasi", 2)
         ));
         return faculties;
     }
