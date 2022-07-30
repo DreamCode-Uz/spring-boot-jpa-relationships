@@ -1,11 +1,17 @@
 ###
-GET http://localhost:8080/api/
+GET http://localhost:8080/api/student
 
 ###
-GET http://localhost:8080/api/student/university/id=1
+GET http://localhost:8080/api/student/university={{universityId}}
 
 ###
-POST http://localhost:8080/api/student/id=1
+GET http://localhost:8080/api/student/university={{universityId}}/faculty={{facultyId}}
+
+###
+GET http://localhost:8080/api/student/university={{universityId}}/group={{groupId}}
+
+###
+POST http://localhost:8080/api/student
 Content-Type: application/json
 
 {
@@ -15,7 +21,7 @@ Content-Type: application/json
   "district": "Mirobod",
   "street": "U. Nosir",
   "groupId": 2,
-  "subjectId": [3, 4, 5, 13, 14, 15]
+  "subjectId": [8, 4, 2, 1, 6]
 }
 
 ###
