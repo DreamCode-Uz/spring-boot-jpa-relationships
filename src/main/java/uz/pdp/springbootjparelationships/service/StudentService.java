@@ -55,7 +55,7 @@ public class StudentService {
                 return new ResponseEntity<>("Student Group is not found.", NOT_FOUND);
             }
             List<Subject> subjects = subjectScan(dto.getSubjectId());
-            if (subjects == null) {
+            if (subjects.size() == 0) {
                 return new ResponseEntity<>(BAD_REQUEST);
             }
             Address address = new Address(dto.getCity(), dto.getDistrict(), dto.getStreet());
@@ -66,6 +66,34 @@ public class StudentService {
             return new ResponseEntity<>(BAD_REQUEST);
         }
     }
+
+    //    UPDATE
+    public ResponseEntity<?> editStudent(Integer id, StudentDTO dto) {
+        Optional<Student> os = studentRepository.findById(id);
+        if (os.isPresent()) {
+            try {
+                Optional<Group> og = groupRepository.findById(dto.getGroupId());
+                if (!og.isPresent()) {
+                    return new ResponseEntity<>("Group is not found", NOT_FOUND);
+                }
+                List<Subject> subjects = subjectScan(dto.getSubjectId());
+                if (subjects.size() == 0) {
+                    return new ResponseEntity<>(BAD_REQUEST);
+                }
+                Address address = os.get().getAddress();
+                address.setStreet(dto.getStreet());
+                address.setCity(dto.getCity());
+                address.setDistrict(dto.getDistrict());
+
+                address = addressRepository.save(address);
+                return new ResponseEntity<>(studentRepository.save(new Student(os.get().getFirstname(), os.get().getLastname(), address, og.get(), subjects)), OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(BAD_REQUEST);
+            }
+        }
+        return new ResponseEntity<>("Student is not found", NOT_FOUND);
+    }
+
 
     //    DELETE
     public ResponseEntity<?> deleteStudent(Integer id) {
@@ -87,7 +115,7 @@ public class StudentService {
         for (Integer subjectId : subjectsId) {
             Optional<Subject> optionalSubject = subjectRepository.findById(subjectId);
             if (!optionalSubject.isPresent()) {
-                return null;
+                return new ArrayList<>();
             }
             subjects.add(optionalSubject.get());
         }
