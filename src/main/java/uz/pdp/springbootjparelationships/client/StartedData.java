@@ -1,6 +1,7 @@
 package uz.pdp.springbootjparelationships.client;
 
 import uz.pdp.springbootjparelationships.payload.FacultyDTO;
+import uz.pdp.springbootjparelationships.payload.GroupDTO;
 import uz.pdp.springbootjparelationships.payload.UniversityDTO;
 
 import java.util.ArrayList;
@@ -38,5 +39,23 @@ public class StartedData {
                 new FacultyDTO("Elektr energetikasi", 1)
         ));
         return faculties;
+    }
+
+    public static List<GroupDTO> groups() {
+        return new ArrayList<>(Arrays.asList(
+                new GroupDTO("305", 1),
+                new GroupDTO("306", 3),
+                new GroupDTO("307", 3),
+                new GroupDTO("301", 2),
+                new GroupDTO("303", 3),
+                new GroupDTO("103", 1),
+                new GroupDTO("113", 6),
+                new GroupDTO("101", 7),
+                new GroupDTO("302", 4),
+                new GroupDTO("200", 8),
+                new GroupDTO("105", 5),
+                new GroupDTO("108", 5),
+                new GroupDTO("107", 2)
+        ));
     }
 }
